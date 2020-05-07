@@ -14,11 +14,20 @@ io.on('connection', (socket) => {
 });
 
 io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
+    socket.on('vlc cmd', (msg) => {
+        console.log(msg);
+        socket.broadcast.emit('vlc cmd', msg);
+    });
+    socket.on('url input', (msg) => {
+        console.log(msg);
+        socket.broadcast.emit('url input', msg);
+    });
+    socket.on('seek cmd', (msg) => {
+        console.log(msg);
+        socket.broadcast.emit('seek cmd', msg);
     });
 });
 
-http.listen(3000, () => {
+http.listen(process.env.PORT || 3000, () => {
     console.log('listening on *:3000');
 });

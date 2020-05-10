@@ -16,7 +16,7 @@ io.on('connection', (socket) => {
 io.on('connection', (socket) => {
     socket.on('vlc cmd', (msg) => {
         console.log(msg);
-        socket.broadcast.emit('vlc cmd', msg);
+        io.emit('vlc cmd', msg);
     });
     socket.on('url input', (msg) => {
         console.log(msg);
@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
     });
     socket.on('seek cmd', (msg) => {
         console.log(msg);
-        socket.broadcast.emit('seek cmd', msg);
+        io.emit('seek cmd', msg);
     });
 });
 
